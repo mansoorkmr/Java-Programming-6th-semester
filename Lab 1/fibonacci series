@@ -1,0 +1,43 @@
+//authour Mansoor
+import java.util.Scanner;
+
+public class Fibonacci {
+
+    // Recursive method to calculate nth Fibonacci number
+    public static int fibonacciRecursive(int n) {
+        if (n == 0)
+            return 0;
+        else if (n == 1)
+            return 1;
+        else
+            return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Ask user for the number of Fibonacci terms to display
+        System.out.print("Enter the number of terms: ");
+        int n = scanner.nextInt();
+        scanner.close();
+
+        // Display Fibonacci series using iteration
+        System.out.println("\nFibonacci Series using Iteration:");
+        int first = 0, second = 1;
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(first + " ");
+            int next = first + second;
+            first = second;
+            second = next;
+        }
+
+        // Display Fibonacci series using recursion
+        System.out.println("\n\nFibonacci Series using Recursion:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(fibonacciRecursive(i) + " ");
+        }
+
+        System.out.println(); // for newline
+    }
+}
