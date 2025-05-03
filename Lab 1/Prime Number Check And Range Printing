@@ -1,0 +1,46 @@
+// Author Mansoor
+
+public class PrimeChecker {
+
+    // Method to check if a number is prime
+    public static boolean isPrime(int number) {
+        if (number <= 1) return false; // 0 and 1 are not prime numbers
+        if (number == 2) return true;  // 2 is the only even prime number
+
+        // Only check up to square root of the number for efficiency
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false; // If divisible, it's not prime
+            }
+        }
+        return true;
+    }
+
+    // Method to print all prime numbers in a given range
+    public static void printPrimesInRange(int start, int end) {
+        System.out.println("Prime numbers between " + start + " and " + end + " are:");
+        for (int i = start; i <= end; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println(); // for new line
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+
+        // Check if a single number is prime
+        int numberToCheck = 29;
+        if (isPrime(numberToCheck)) {
+            System.out.println(numberToCheck + " is a prime number.");
+        } else {
+            System.out.println(numberToCheck + " is not a prime number.");
+        }
+
+        // Print all primes in a range
+        int start = 10;
+        int end = 50;
+        printPrimesInRange(start, end);
+    }
+}
