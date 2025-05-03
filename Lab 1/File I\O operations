@@ -1,0 +1,43 @@
+// Author Mansoor 
+
+
+import java.io.*;
+import java.util.Scanner;
+
+public class FileIOExample {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Ask user for file name
+        System.out.print("Enter file name (e.g., notes.txt): ");
+        String fileName = scanner.nextLine();
+
+        // Ask user for content to write
+        System.out.println("Enter content to write into the file:");
+        String content = scanner.nextLine();
+
+        // Write content to file
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write(content);
+            System.out.println("✅ Successfully written to " + fileName);
+        } catch (IOException e) {
+            System.out.println("❌ An error occurred while writing to the file.");
+            e.printStackTrace();
+        }
+
+        // Read content back from file
+        System.out.println("\nReading content from the file:");
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("❌ An error occurred while reading the file.");
+            e.printStackTrace();
+        }
+
+        scanner.close();
+    }
+}
