@@ -1,0 +1,43 @@
+// Author Mansoor
+
+import java.util.Arrays;
+
+class SearchAlgorithms {
+    // Linear Search
+    static int linearSearch(int[] arr, int key) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key)
+                return i;
+        }
+        return -1;
+    }
+
+    // Binary Search
+    static int binarySearch(int[] arr, int key) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] == key)
+                return mid;
+            else if (arr[mid] < key)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {5, 2, 9, 1, 6};
+        int key = 9;
+
+        // Linear search
+        int linearResult = linearSearch(arr, key);
+        System.out.println("Linear Search Index: " + linearResult);
+
+        // Binary search requires sorted array
+        Arrays.sort(arr);
+        int binaryResult = binarySearch(arr, key);
+        System.out.println("Binary Search Index: " + binaryResult);
+    }
+}
