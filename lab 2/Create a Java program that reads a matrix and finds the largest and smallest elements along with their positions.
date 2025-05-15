@@ -1,0 +1,39 @@
+// Author Mansoor Ahmad Wani
+
+import java.util.Scanner;
+
+public class MatrixMinMax {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter rows: ");
+        int r = sc.nextInt();
+        System.out.print("Enter columns: ");
+        int c = sc.nextInt();
+
+        int[][] matrix = new int[r][c];
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        int minRow = -1, minCol = -1, maxRow = -1, maxCol = -1;
+
+        System.out.println("Enter elements:");
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                matrix[i][j] = sc.nextInt();
+                if (matrix[i][j] < min) {
+                    min = matrix[i][j];
+                    minRow = i;
+                    minCol = j;
+                }
+                if (matrix[i][j] > max) {
+                    max = matrix[i][j];
+                    maxRow = i;
+                    maxCol = j;
+                }
+            }
+        }
+
+        System.out.println("Minimum = " + min + " at (" + minRow + ", " + minCol + ")");
+        System.out.println("Maximum = " + max + " at (" + maxRow + ", " + maxCol + ")");
+        sc.close();
+    }
+}
