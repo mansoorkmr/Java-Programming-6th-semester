@@ -1,0 +1,64 @@
+// AUTHOR MANSOOR AHAMD WANI
+
+import java.util.Scanner;
+
+class Employee {
+    // Attributes
+    private int empID;
+    private String name;
+    private double basicSalary;
+
+    // Constants for HRA and DA percentages
+    private static final double HRA_PERCENT = 0.20; // 20% of basic
+    private static final double DA_PERCENT = 0.15;  // 15% of basic
+
+    // Accept employee details
+    public void acceptDetails() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Employee ID: ");
+        empID = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        System.out.print("Enter Employee Name: ");
+        name = scanner.nextLine();
+
+        System.out.print("Enter Basic Salary: ");
+        basicSalary = scanner.nextDouble();
+    }
+
+    // Calculate HRA
+    public double calculateHRA() {
+        return basicSalary * HRA_PERCENT;
+    }
+
+    // Calculate DA
+    public double calculateDA() {
+        return basicSalary * DA_PERCENT;
+    }
+
+    // Calculate Gross Salary
+    public double calculateGrossSalary() {
+        return basicSalary + calculateHRA() + calculateDA();
+    }
+
+    // Print salary slip
+    public void printSalarySlip() {
+        System.out.println("\n--- Salary Slip ---");
+        System.out.println("Employee ID   : " + empID);
+        System.out.println("Employee Name : " + name);
+        System.out.printf("Basic Salary  : ₹%.2f\n", basicSalary);
+        System.out.printf("HRA (20%%)     : ₹%.2f\n", calculateHRA());
+        System.out.printf("DA (15%%)      : ₹%.2f\n", calculateDA());
+        System.out.printf("Gross Salary  : ₹%.2f\n", calculateGrossSalary());
+    }
+}
+
+// Main class
+public class EmployeeSalarySlip {
+    public static void main(String[] args) {
+        Employee employee = new Employee();
+        employee.acceptDetails();
+        employee.printSalarySlip();
+    }
+}
