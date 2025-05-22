@@ -1,0 +1,98 @@
+// AUTHOR MANSOOR AHMAD WANI
+
+
+import java.util.Scanner;
+
+class BankAccount {
+    // Attributes
+    private String accountNumber;
+    private String holderName;
+    private double balance;
+
+    // Method to accept initial account details
+    public void createAccount() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Account Number: ");
+        accountNumber = scanner.nextLine();
+
+        System.out.print("Enter Account Holder Name: ");
+        holderName = scanner.nextLine();
+
+        System.out.print("Enter Initial Balance: ");
+        balance = scanner.nextDouble();
+    }
+
+    // Method to deposit money
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("₹" + amount + " deposited successfully.");
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    // Method to withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("₹" + amount + " withdrawn successfully.");
+        } else {
+            System.out.println("Invalid or insufficient balance for withdrawal.");
+        }
+    }
+
+    // Method to display current balance
+    public void displayBalance() {
+        System.out.println("\n--- Account Information ---");
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Holder: " + holderName);
+        System.out.printf("Current Balance: ₹%.2f\n", balance);
+    }
+}
+
+// Main class
+public class BankAccountManagement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        BankAccount account = new BankAccount();
+
+        account.createAccount();
+
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Deposit Money");
+            System.out.println("2. Withdraw Money");
+            System.out.println("3. Display Balance");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+
+            int choice = scanner.nextInt();
+            double amount;
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter amount to deposit: ");
+                    amount = scanner.nextDouble();
+                    account.deposit(amount);
+                    break;
+                case 2:
+                    System.out.print("Enter amount to withdraw: ");
+                    amount = scanner.nextDouble();
+                    account.withdraw(amount);
+                    break;
+                case 3:
+                    account.displayBalance();
+                    break;
+                case 4:
+                    exit = true;
+                    System.out.println("Thank you for using Bank Account Management System.");
+                    break;
+                default:
+                    System.out.println("Invalid option. Try again.");
+            }
+        }
+    }
+}
