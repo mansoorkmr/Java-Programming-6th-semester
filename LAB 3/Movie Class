@@ -1,0 +1,84 @@
+// AUTHOR MANSOOR AHMAD WANI
+
+
+import java.util.Scanner;
+
+class Movie {
+    private String movieName;
+    private String director;
+    private int releaseYear;
+    private double rating;
+
+    // Input movie details
+    public void inputDetails() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Movie Name: ");
+        movieName = scanner.nextLine();
+
+        System.out.print("Enter Director: ");
+        director = scanner.nextLine();
+
+        System.out.print("Enter Release Year: ");
+        releaseYear = scanner.nextInt();
+
+        System.out.print("Enter Rating (0.0 to 10.0): ");
+        rating = scanner.nextDouble();
+        scanner.nextLine();  // consume newline
+    }
+
+    // Display movie information
+    public void displayDetails() {
+        System.out.println("\n--- Movie Information ---");
+        System.out.println("Name        : " + movieName);
+        System.out.println("Director    : " + director);
+        System.out.println("Release Year: " + releaseYear);
+        System.out.printf("Rating      : %.1f\n", rating);
+    }
+
+    // Getter for rating
+    public double getRating() {
+        return rating;
+    }
+
+    // Getter for movie name (optional for display)
+    public String getMovieName() {
+        return movieName;
+    }
+}
+
+// Main class
+public class MovieManagement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("How many movies do you want to enter? ");
+        int n = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        Movie[] movies = new Movie[n];
+
+        // Input details for all movies
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for Movie " + (i + 1));
+            movies[i] = new Movie();
+            movies[i].inputDetails();
+        }
+
+        System.out.print("\nEnter rating threshold to display movies above: ");
+        double threshold = scanner.nextDouble();
+
+        System.out.println("\nMovies with rating above " + threshold + ":");
+        boolean found = false;
+        for (Movie movie : movies) {
+            if (movie.getRating() > threshold) {
+                movie.displayDetails();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No movies found with rating above " + threshold);
+        }
+    }
+}
