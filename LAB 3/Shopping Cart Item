@@ -1,0 +1,53 @@
+// AUTHOR MANSOOR AHMAD WANI
+
+
+import java.util.Scanner;
+
+class Item {
+    private String itemCode;
+    private String name;
+    private int quantity;
+    private double pricePerUnit;
+
+    // Input item details
+    public void inputDetails() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Item Code: ");
+        itemCode = scanner.nextLine();
+
+        System.out.print("Enter Item Name: ");
+        name = scanner.nextLine();
+
+        System.out.print("Enter Quantity: ");
+        quantity = scanner.nextInt();
+
+        System.out.print("Enter Price per Unit: ");
+        pricePerUnit = scanner.nextDouble();
+        scanner.nextLine(); // consume newline
+    }
+
+    // Calculate total price
+    public double calculateTotalPrice() {
+        return quantity * pricePerUnit;
+    }
+
+    // Display item bill
+    public void displayBill() {
+        System.out.println("\n--- Item Bill ---");
+        System.out.println("Item Code     : " + itemCode);
+        System.out.println("Item Name     : " + name);
+        System.out.println("Quantity      : " + quantity);
+        System.out.printf("Price per Unit: ₹%.2f\n", pricePerUnit);
+        System.out.printf("Total Price   : ₹%.2f\n", calculateTotalPrice());
+    }
+}
+
+// Main class
+public class ShoppingCart {
+    public static void main(String[] args) {
+        Item item = new Item();
+        item.inputDetails();
+        item.displayBill();
+    }
+}
