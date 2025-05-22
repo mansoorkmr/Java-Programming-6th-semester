@@ -1,0 +1,67 @@
+// AUTHOR MANSOOR AHMAD WANI
+
+import java.util.Scanner;
+
+class Student {
+    // Attributes
+    private int rollNumber;
+    private String name;
+    private String course;
+    private int[] marks = new int[3];
+
+    // Method to accept student details
+    public void acceptDetails() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Roll Number: ");
+        rollNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        System.out.print("Enter Name: ");
+        name = scanner.nextLine();
+
+        System.out.print("Enter Course: ");
+        course = scanner.nextLine();
+
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Enter marks for Subject " + (i + 1) + ": ");
+            marks[i] = scanner.nextInt();
+        }
+    }
+
+    // Method to calculate total marks
+    public int calculateTotal() {
+        int total = 0;
+        for (int mark : marks) {
+            total += mark;
+        }
+        return total;
+    }
+
+    // Method to calculate average marks
+    public double calculateAverage() {
+        return calculateTotal() / 3.0;
+    }
+
+    // Method to display student information
+    public void displayDetails() {
+        System.out.println("\n--- Student Information ---");
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Name: " + name);
+        System.out.println("Course: " + course);
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Marks in Subject " + (i + 1) + ": " + marks[i]);
+        }
+        System.out.println("Total Marks: " + calculateTotal());
+        System.out.printf("Average Marks: %.2f\n", calculateAverage());
+    }
+}
+
+// Main class
+public class StudentInformationSystem {
+    public static void main(String[] args) {
+        Student student = new Student();
+        student.acceptDetails();
+        student.displayDetails();
+    }
+}
