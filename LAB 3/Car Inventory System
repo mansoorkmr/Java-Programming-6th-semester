@@ -1,0 +1,74 @@
+// AUTHOR MANSOOR AHMAD WANIU
+
+
+import java.util.Scanner;
+
+class Car {
+    private String model;
+    private int year;
+    private double price;
+
+    // Input car details
+    public void inputDetails() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Car Model: ");
+        model = scanner.nextLine();
+
+        System.out.print("Enter Manufacturing Year: ");
+        year = scanner.nextInt();
+
+        System.out.print("Enter Price: ");
+        price = scanner.nextDouble();
+        scanner.nextLine();  // consume newline
+    }
+
+    // Getter for price
+    public double getPrice() {
+        return price;
+    }
+
+    // Display car details
+    public void displayDetails() {
+        System.out.println("\n--- Car Details ---");
+        System.out.println("Model: " + model);
+        System.out.println("Year : " + year);
+        System.out.printf("Price: ₹%.2f\n", price);
+    }
+}
+
+// Main class
+public class CarInventorySystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("How many cars do you want to enter? ");
+        int n = scanner.nextInt();
+        scanner.nextLine();  // consume newline
+
+        Car[] cars = new Car[n];
+
+        // Input details for all cars
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for Car " + (i + 1));
+            cars[i] = new Car();
+            cars[i].inputDetails();
+        }
+
+        System.out.print("\nEnter price threshold: ");
+        double priceThreshold = scanner.nextDouble();
+
+        System.out.println("\nCars with price above ₹" + priceThreshold + ":");
+        boolean found = false;
+        for (Car car : cars) {
+            if (car.getPrice() > priceThreshold) {
+                car.displayDetails();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No cars found with price above ₹" + priceThreshold);
+        }
+    }
+}
