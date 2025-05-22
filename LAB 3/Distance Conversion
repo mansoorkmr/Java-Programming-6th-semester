@@ -1,0 +1,82 @@
+// AUTHOR MANSOOR AHAMD WANI
+
+
+import java.util.Scanner;
+
+class Distance {
+    private int feet;
+    private int inches;
+
+    // Accept values
+    public void acceptValues() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter feet: ");
+        feet = scanner.nextInt();
+
+        System.out.print("Enter inches: ");
+        inches = scanner.nextInt();
+
+        // Normalize inches (if inches >= 12, convert to feet)
+        if (inches >= 12) {
+            feet += inches / 12;
+            inches = inches % 12;
+        }
+    }
+
+    // Convert to meters
+    public double toMeters() {
+        // 1 foot = 0.3048 meters, 1 inch = 0.0254 meters
+        return feet * 0.3048 + inches * 0.0254;
+    }
+
+    // Convert to centimeters
+    public double toCentimeters() {
+        return toMeters() * 100;
+    }
+
+    // Add two distances and return the result as a new Distance object
+    public Distance add(Distance d) {
+        int totalInches = (this.feet + d.feet) * 12 + (this.inches + d.inches);
+
+        Distance result = new Distance();
+        result.feet = totalInches / 12;
+        result.inches = totalInches % 12;
+
+        return result;
+    }
+
+    // Display the distance
+    public void display() {
+        System.out.println(feet + " feet " + inches + " inches");
+    }
+}
+
+// Main class
+public class DistanceConversion {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        Distance d1 = new Distance();
+        System.out.println("Enter first distance:");
+        d1.acceptValues();
+
+        Distance d2 = new Distance();
+        System.out.println("Enter second distance:");
+        d2.acceptValues();
+
+        Distance sum = d1.add(d2);
+
+        System.out.print("\nFirst distance: ");
+        d1.display();
+        System.out.printf("In meters: %.4f m, In centimeters: %.2f cm\n", d1.toMeters(), d1.toCentimeters());
+
+        System.out.print("Second distance: ");
+        d2.display();
+        System.out.printf("In meters: %.4f m, In centimeters: %.2f cm\n", d2.toMeters(), d2.toCentimeters());
+
+        System.out.print("Sum of distances: ");
+        sum.display();
+        System.out.printf("In meters: %.4f m, In centimeters: %.2f cm\n", sum.toMeters(), sum.toCentimeters());
+    }
+}
